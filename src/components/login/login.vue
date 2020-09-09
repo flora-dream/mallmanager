@@ -30,6 +30,7 @@ export default {
 
       // console.log(res)
       const {
+        data,
         meta: {
           msg,
           status
@@ -39,8 +40,10 @@ export default {
       // 1.提示信息
       if (status === 200) {
         // 登陆成功
+        // 0.保存token值
         // 1.跳转home
         // 2.提示成功
+        localStorage.setItem('token', data.token)
         this.$message.success(msg)
         this.$router.push({
           name: 'home'
