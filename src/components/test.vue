@@ -1,36 +1,15 @@
 <template>
-<el-container class="container">
-  <el-header class="header">
-    <el-row>
-      <el-col :span="4">
-        <div class="grid-content bg-purple">
-          <img src="../../assets/logo.png" alt="无法显示该图片" width="50px" height="50px">
-        </div>
-      </el-col>
-      <el-col :span="18" class="middle">
-        <h3>电商后台管理系统</h3>
-      </el-col>
-      <el-col :span="2">
-        <div class="grid-content bg-purple">
-          <a href="#" class="loginout" @click="handleLoginout()">退出</a>
-        </div>
-      </el-col>
-    </el-row>
-  </el-header>
-  <el-container>
-    <el-aside class="aside" width="200px">
-      <el-col :span="12">
+<div>
+  <el-col :span="12">
         <h5>默认颜色</h5>
-        <el-menu
-        :router="true"
-        :unique-opened="true">
+        <el-menu>
           <!-- 1 -->
           <el-submenu index="1">
             <template slot="title">
               <i class="el-icon-location"></i>
               <span>用户管理</span>
             </template>
-            <el-menu-item index="users">
+            <el-menu-item index="1-1">
               <i class="el-icon-user-solid"></i>
               <span>用户列表</span>
             </el-menu-item>
@@ -93,61 +72,18 @@
           </el-submenu>
         </el-menu>
       </el-col>
-    </el-aside>
-    <el-main class="main">
-      <router-view></router-view>
-    </el-main>
-  </el-container>
-</el-container>
+</div>
 </template>
 
 <script>
 export default {
-  beforeCreate () {
-    const token = localStorage.getItem('token')
-    if (!token) {
-      this.$router.push({name: 'login'})
-    }
-  },
   methods: {
-    handleLoginout () {
-      // 清除token
-      localStorage.clear()
-      // 提示
-      this.$message.success('退出成功！')
-      // 来到login组件
-      this.$router.push({name: 'login'})
+    handleOpen (key, keyPath) {
+      console.log(key, keyPath)
+    },
+    handleClose (key, keyPath) {
+      console.log(key, keyPath)
     }
   }
 }
 </script>
-
-<style lang="">
-.container {
-  height: 100%;
-}
-
-.header {
-    background-color: #373f41;
-  color: #fff;
-  font-size: 20px;
-}
-
-.aside {
-
-}
-
-.main {
-  background-color: #e9eef3;
-}
-
-/*头部样式*/
-.middle {
-  text-align: center;
-}
-
-.loginout {
-  text-decoration: none;
-  line-height: 60px;
-}
-</style>
