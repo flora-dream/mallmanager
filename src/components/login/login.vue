@@ -25,30 +25,29 @@ export default {
   },
   methods: {
     // 登陆请求
-    handleLogin () {
-      this.$http.post('login', this.formdata)
-        .then((res) => {
-          // console.log(res)
-          const {
-            meta: {
-              msg,
-              status
-            }
-          } = res.data
-          // 不成功
-          // 1.提示信息
-          if (status === 200) {
-            // 登陆成功
-            // 1.跳转home
-            // 2.提示成功
-            this.$message.success(msg)
-            this.$router.push({
-              name: 'home'
-            })
-          } else {
-            this.$message.warning(msg)
-          }
+    async handleLogin () {
+      const res = await this.$http.post('login', this.formdata)
+
+      // console.log(res)
+      const {
+        meta: {
+          msg,
+          status
+        }
+      } = res.data
+      // 不成功
+      // 1.提示信息
+      if (status === 200) {
+        // 登陆成功
+        // 1.跳转home
+        // 2.提示成功
+        this.$message.success(msg)
+        this.$router.push({
+          name: 'home'
         })
+      } else {
+        this.$message.warning(msg)
+      }
     }
   }
 }
